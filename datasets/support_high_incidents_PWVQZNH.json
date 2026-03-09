@@ -92,8 +92,14 @@
     }
   },
   "schema": {
-    "columns": [],
-    "userModified": true
+    "columns": [
+      {"name":"incident_number","type":"bigint"},
+      {"name":"status","type":"string"},
+      {"name":"created_at","type":"string"},
+      {"name":"title","type":"string"},
+      {"name":"url","type":"string"}
+    ],
+    "userModified": false
   },
   "typeSystemVersion": "V2",
   "dkuProperties": [],
