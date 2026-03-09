@@ -29,7 +29,7 @@
         "minute": 0,
         "hour": 0,
         "timezone": "America/Denver",
-        "lastUpdate": 1773094092641
+        "lastUpdate": 1773094225282
       }
     }
   ],
@@ -48,7 +48,44 @@
     }
   ],
   "params": {
-    "steps": []
+    "steps": [
+      {
+        "id": "build_4_true_d_support_low_incidents_P2OE4T3_d_support_high_incidents_PWVQZNH",
+        "type": "build_flowitem",
+        "name": "Build Datasets",
+        "enabled": true,
+        "alwaysShowComment": false,
+        "runConditionType": "RUN_ALWAYS",
+        "runConditionStatuses": [
+          "SUCCESS",
+          "WARNING"
+        ],
+        "runConditionExpression": "",
+        "resetScenarioStatus": false,
+        "delayBetweenRetries": 10,
+        "maxRetriesOnFail": 0,
+        "params": {
+          "builds": [
+            {
+              "type": "DATASET",
+              "itemId": "support_low_incidents_P2OE4T3",
+              "partitionsSpec": ""
+            },
+            {
+              "type": "DATASET",
+              "itemId": "support_high_incidents_PWVQZNH",
+              "partitionsSpec": ""
+            }
+          ],
+          "jobType": "REVERSE_FORCED_BUILD",
+          "autoUpdateSchemaBeforeEachRecipeRun": false,
+          "stopAtFlowZoneBoundary": false,
+          "refreshHiveMetastore": true,
+          "handleWarningsAs": "WARNING",
+          "proceedOnFailure": false
+        }
+      }
+    ]
   },
   "automationLocal": false,
   "customFields": {},
