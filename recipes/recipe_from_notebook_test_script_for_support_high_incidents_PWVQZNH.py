@@ -36,8 +36,8 @@ for inc in incidents:
 
 # write 
 df = pd.DataFrame(rows)
-output_dataset = dataiku.Dataset("support_high_incidents")
-output_dataset.write_with_schema(df)
+# output_dataset = dataiku.Dataset("support_high_incidents")
+# output_dataset.write_with_schema(df)
 
 # -------------------------------------------------------------------------------- NOTEBOOK-CELL: CODE
 # Recipe outputs
