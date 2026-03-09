@@ -36,10 +36,11 @@ for inc in incidents:
 
 # write 
 df = pd.DataFrame(rows)
-# output_dataset = dataiku.Dataset("support_high_incidents")
-# output_dataset.write_with_schema(df)
 
 # -------------------------------------------------------------------------------- NOTEBOOK-CELL: CODE
 # Recipe outputs
+# Ensure "support_high_incidents_PWVQZNH" matches the icon on your Flow exactly
 support_high_incidents_pwvqznh = dataiku.Dataset("support_high_incidents_PWVQZNH")
-support_high_incidents_pwvqznh.write_with_schema(pandas_dataframe)
+
+# Changed 'pandas_dataframe' to 'df' so it matches the table created above
+support_high_incidents_pwvqznh.write_with_schema(df)
