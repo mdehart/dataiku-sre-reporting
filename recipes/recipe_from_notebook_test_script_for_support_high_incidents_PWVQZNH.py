@@ -1,4 +1,3 @@
-# -------------------------------------------------------------------------------- NOTEBOOK-CELL: CODE
 import dataiku
 import pandas as pd
 import requests
@@ -6,10 +5,7 @@ import requests
 # init
 API_KEY = "u+xqRscqCG91yXoHxL3g"
 POLICY_ID = "PWVQZNH"
-headers = {
-    "Accept": "application/vnd.pagerduty+json;version=2",
-    "Authorization": f"Token token={API_KEY}"
-}
+url = "https://api.pagerduty.com/incidents"
 
 # params
 params = {
@@ -19,28 +15,22 @@ params = {
     "sort_by": "created_at:desc"
 }
 
-# get call
-res = requests.get("https://api.pagerduty.com/incidents", headers=headers, params=params)
-incidents = res.json().get('incidents', [])
+# auth
+headers = {
+    "Accept": "application/vnd.pagerduty+json;version=2",
+    "Authorization": f"Token token={API_KEY}"
+}
 
-# table format conversion
-rows = []
-for inc in incidents:
-    rows.append({
-        "incident_number": inc.get('incident_number'),
-        "status": inc.get('status'),
-        "created_at": inc.get('created_at'),
-        "title": inc.get('title'),
-        "url": inc.get('html_url')
-    })
+res = requests.get(url, headers=headers, params=params).json()
 
-# write 
-df = pd.DataFrame(rows)
+# format into df
+df = pd.DataFrame([{
+    "incident_number": i.get('incident_number'),
+    "status": i.get('status'),
+    "created_at": i.get('created_at'),
+    "title": i.get('title'),
+    "url": i.get('html_url')
+} for i in res.get('incidents', [])])
 
-# -------------------------------------------------------------------------------- NOTEBOOK-CELL: CODE
-# Recipe outputs
-# Ensure "support_high_incidents_PWVQZNH" matches the icon on your Flow exactly
-support_high_incidents_pwvqznh = dataiku.Dataset("support_high_incidents_PWVQZNH")
-
-# Changed 'pandas_dataframe' to 'df' so it matches the table created above
-support_high_incidents_pwvqznh.write_with_schema(df)
+# output
+dataiku.Dataset("support_high_incidents_PWVQZNH").write_with_schema(df)
