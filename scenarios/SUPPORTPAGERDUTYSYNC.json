@@ -2,13 +2,6 @@
   "type": "step_based",
   "name": "support-pagerduty-sync",
   "active": false,
-  "creationTag": {
-    "versionNumber": 0,
-    "lastModifiedBy": {
-      "login": "mikio.dehart@gmail.com"
-    },
-    "lastModifiedOn": 1773093977285
-  },
   "checklists": {
     "checklists": []
   },
@@ -18,8 +11,42 @@
     "suppressTriggersWhileRunning": true
   },
   "tags": [],
-  "triggers": [],
-  "reporters": [],
+  "triggers": [
+    {
+      "id": "hV4ZCGP3",
+      "type": "temporal",
+      "name": "Time-based",
+      "delay": 5,
+      "active": true,
+      "params": {
+        "repeatFrequency": 1,
+        "frequency": "Daily",
+        "startingFrom": "2026-03-09",
+        "daysOfWeek": [
+          "Monday"
+        ],
+        "monthlyRunOn": "ON_THE_DAY",
+        "minute": 0,
+        "hour": 0,
+        "timezone": "America/Denver",
+        "lastUpdate": 1773094092641
+      }
+    }
+  ],
+  "reporters": [
+    {
+      "active": true,
+      "messaging": {
+        "type": "dataset-scenario",
+        "configuration": {}
+      },
+      "id": "LDjPneqY",
+      "name": "support-pagerduty-sync-failure",
+      "runConditionEnabled": true,
+      "runCondition": "outcome !\u003d \u0027SUCCESS\u0027",
+      "phase": "END"
+    }
+  ],
   "params": {
     "steps": []
   },
