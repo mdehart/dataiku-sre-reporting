@@ -1,5 +1,5 @@
 # -------------------------------------------------------------------------------- NOTEBOOK-CELL: CODE
-#test script for support_low_incidents P2OE4T3
+# test script for support_low_incidents P2OE4T3
 import dataiku
 import pandas as pd
 import requests
@@ -38,10 +38,11 @@ for inc in incidents:
 
 # write 
 df = pd.DataFrame(rows)
-# output_dataset = dataiku.Dataset("support_low_incidents")
-# output_dataset.write_with_schema(df)
 
 # -------------------------------------------------------------------------------- NOTEBOOK-CELL: CODE
 # Recipe outputs
+# Note: Ensure "support_low_incidents_P2OE4T3" is exactly how the output appears on your Flow
 support_low_incidents_p2oe4t3 = dataiku.Dataset("support_low_incidents_P2OE4T3")
-support_low_incidents_p2oe4t3.write_with_schema(pandas_dataframe)
+
+# We pass 'df' here because that is the name of the DataFrame we created above
+support_low_incidents_p2oe4t3.write_with_schema(df)
