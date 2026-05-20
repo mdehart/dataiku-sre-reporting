@@ -1,6 +1,32 @@
 {
   "columnsSelection": {
-    "mode": "ALL"
+    "mode": "ALL",
+    "list": [
+      {
+        "d": true,
+        "name": "incident_number"
+      },
+      {
+        "d": true,
+        "name": "status"
+      },
+      {
+        "d": true,
+        "name": "created_at"
+      },
+      {
+        "d": true,
+        "name": "title"
+      },
+      {
+        "d": true,
+        "name": "url"
+      },
+      {
+        "d": true,
+        "name": "incident_severity_level"
+      }
+    ]
   },
   "explorationSampling": {
     "_refreshTrigger": 0,
@@ -30,8 +56,24 @@
   "explorationFilters": [],
   "columnOrder": [],
   "columnUseScientificNotationByName": {},
-  "exploreUIParams": {},
-  "steps": [],
+  "origin": "PREPARE_RECIPE",
+  "exploreUIParams": {
+    "autoRefresh": true
+  },
+  "steps": [
+    {
+      "preview": true,
+      "metaType": "PROCESSOR",
+      "disabled": false,
+      "type": "CreateColumnWithGREL",
+      "params": {
+        "expression": "\"high\"",
+        "column": "incident_severity_level",
+        "errorColumn": ""
+      },
+      "alwaysShowComment": false
+    }
+  ],
   "maxProcessedMemTableBytes": -1,
   "previewMode": "ALL_ROWS",
   "vizSampling": {
@@ -59,7 +101,14 @@
   },
   "analysisColumnData": {},
   "flagNumericValues": true,
-  "columnWidthsByName": {},
+  "columnWidthsByName": {
+    "created_at": 155,
+    "title": 300,
+    "incident_number": 128,
+    "incident_severity_level": 188,
+    "url": 300,
+    "status": 100
+  },
   "sorting": [],
   "globalSearchQuery": "",
   "coloring": {
