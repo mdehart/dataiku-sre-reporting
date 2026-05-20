@@ -97,7 +97,8 @@
       {"name":"status","type":"string"},
       {"name":"created_at","type":"string"},
       {"name":"title","type":"string"},
-      {"name":"url","type":"string"}
+      {"name":"url","type":"string"},
+      {"name":"incident_severity_level","type":"string"}
     ],
     "userModified": true
   },
