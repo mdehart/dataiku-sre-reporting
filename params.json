@@ -170,6 +170,7 @@
       "explicitSettings": {
         "flushEveryBytes": 10000000,
         "flushEveryS": 900,
+        "writeAsUser": "mikio.dehart@gmail.com",
         "contentMode": "NO_LOGS_NO_TRACE"
       }
     },
