@@ -2,6 +2,8 @@
 
 An automated data pipeline built in Dataiku DSS to extract, tag, and aggregate PagerDuty SRE (Site Reliability Engineering) incident events. This repository tracks the version-controlled recipes, python notebooks, scenarios, and metadata configurations for the project.
 
+## Flow Overview
+
 ```mermaid
 graph LR
     %% Custom Dark Theme Palette
@@ -45,8 +47,8 @@ graph LR
 ## Project Overview
 
 This project automates the ingestion and normalization of PagerDuty operational incident data to enable centralized SRE reporting. It separates incidents into discrete severity streams, normalizes the tracking metadata, and combines them into a unified reporting dataset.
-<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/e5f6658c-ae57-465f-a2f5-6c6ca2ca4eb5" />
-## 🛠️ Data Pipeline Architecture
+
+## Data Pipeline Architecture
 
 1. **Ingestion (Python Fetch Scripts)**
    * Utilizes the PagerDuty API endpoint to fetch raw incident log events.
@@ -60,13 +62,13 @@ This project automates the ingestion and normalization of PagerDuty operational 
    * Stacks both prepared datasets together into a single master output dataset: `support_incidents_P2OE4T3_PWVQZNH_stacked`.
    * Unifies schemas automatically based on identical columns so the source context (`high` vs `low`) is preserved in a single column without structural separation.
 
-## 🕒 Automation & Orchestration
+## Automation & Orchestration
 
 The pipeline runs completely hands-free via a Dataiku **Time-based Scenario**:
 * **Schedule:** Weekly (Every Monday at 2:00 AM)
 * **Execution Strategy:** `Build everything upstream` — Triggering the scenario automatically forces the underlying Python scripts to query the fresh week's API logs, run the rows through the visual prepare steps, and refresh the final reporting dataset.
 
-## 🗂️ Repository Structure
+## Repository Structure
 
 This repository reflects the standard version-control export format for a Dataiku project:
 * `/recipes/` - JSON schemas and configurations defining the data flow transformations (prepare steps, stack alignments).
