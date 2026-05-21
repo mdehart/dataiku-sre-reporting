@@ -11,26 +11,30 @@ graph LR
     classDef recipeNode fill:#744210,stroke:#b7791f,stroke-width:1px,color:#fbd38d;
     classDef stackNode fill:#2d3748,stroke:#4a5568,stroke-width:1px,color:#e2e8f0;
 
-    %% Flow Layout
     subgraph Pipeline [Dataiku SRE Reporting Flow]
         style Pipeline fill:#0f0f11,stroke:#2d2d30,stroke-width:1px,color:#a0aec0;
 
         %% Top Stream (Low Severity)
-        P1([Python: Fetch Low]) :::pythonNode --> D1[support_low] :::datasetNode
-        D1 --> R1{{Prepare Recipe}} :::recipeNode
-        R1 --> D2[support_low_prepared] :::datasetNode
+        P1([Python: Fetch Low]) --> D1[support_low]
+        D1 --> R1{{Prepare Recipe}}
+        R1 --> D2[support_low_prepared]
 
         %% Bottom Stream (High Severity)
-        P2([Python: Fetch High]) :::pythonNode --> D3[support_high] :::datasetNode
-        D3 --> R2{{Prepare Recipe}} :::recipeNode
-        R2 --> D4[support_high_prepared] :::datasetNode
+        P2([Python: Fetch High]) --> D3[support_high]
+        D3 --> R2{{Prepare Recipe}}
+        R2 --> D4[support_high_prepared]
 
         %% Merging Output
-        D2 --> S1{{Stack Recipe}} :::stackNode
+        D2 --> S1{{Stack Recipe}}
         D4 --> S1
-        S1 --> D5[support_incidents_combined] :::datasetNode
-    end
+        S1 --> D5[support_incidents_combined]
 
+        %% Separate Style Assignments to avoid parser errors
+        class P1,P2 pythonNode;
+        class D1,D2,D3,D4,D5 datasetNode;
+        class R1,R2 recipeNode;
+        class S1 stackNode;
+    end
 ## Project Overview
 
 This project automates the ingestion and normalization of PagerDuty operational incident data to enable centralized SRE reporting. It separates incidents into discrete severity streams, normalizes the tracking metadata, and combines them into a unified reporting dataset.
