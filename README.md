@@ -1,32 +1,36 @@
 # PagerDuty SRE Event Fetcher & Reporting
 
 An automated data pipeline built in Dataiku DSS to extract, tag, and aggregate PagerDuty SRE (Site Reliability Engineering) incident events. This repository tracks the version-controlled recipes, python notebooks, scenarios, and metadata configurations for the project.
+
+```mermaid
 graph LR
-    %% Palette Configuration
-    classDef default fill:#1e1e24,stroke:#4a4a4f,stroke-width:1px,color:#d1d1d6;
-    classDef pythonNode fill:#2c3e50,stroke:#34495e,stroke-width:1px,color:#ecf0f1;
-    classDef dataNode fill:#204060,stroke:#2980b9,stroke-width:1px,color:#e0f2fe;
-    classDef recipeNode fill:#594010,stroke:#d4ac0d,stroke-width:1px,color:#fef9e7;
-    classDef mergeNode fill:#5d4037,stroke:#a1887f,stroke-width:1px,color:#efebe9;
+    %% Custom Dark Theme Palette
+    classDef default fill:#1a1a1a,stroke:#333333,stroke-width:1px,color:#e0e0e0;
+    classDef pythonNode fill:#2d3748,stroke:#4a5568,stroke-width:1px,color:#a0aec0;
+    classDef datasetNode fill:#1a365d,stroke:#2b6cb0,stroke-width:1px,color:#90cdf4;
+    classDef recipeNode fill:#744210,stroke:#b7791f,stroke-width:1px,color:#fbd38d;
+    classDef stackNode fill:#2d3748,stroke:#4a5568,stroke-width:1px,color:#e2e8f0;
 
-    %% Top Pipeline (Low Severity)
-    P1([Python script]) :::pythonNode --> D1[support_low_incidents] :::dataNode
-    D1 --> R1{{Prepare recipe}} :::recipeNode
-    R1 --> D2[support_low_incidents_prepared] :::dataNode
+    %% Flow Layout
+    subgraph Pipeline [Dataiku SRE Reporting Flow]
+        style Pipeline fill:#0f0f11,stroke:#2d2d30,stroke-width:1px,color:#a0aec0;
 
-    %% Bottom Pipeline (High Severity)
-    P2([Python script]) :::pythonNode --> D3[support_high_incidents] :::dataNode
-    D3 --> R2{{Prepare recipe}} :::recipeNode
-    R2 --> D4[support_high_incidents_prepared] :::dataNode
+        %% Top Stream (Low Severity)
+        P1([Python: Fetch Low]) :::pythonNode --> D1[support_low] :::datasetNode
+        D1 --> R1{{Prepare Recipe}} :::recipeNode
+        R1 --> D2[support_low_prepared] :::datasetNode
 
-    %% Merge & Final Output
-    D2 --> M1{{Stack recipe}} :::mergeNode
-    D4 --> M1
-    M1 --> D5[support_incidents_combined] :::dataNode
+        %% Bottom Stream (High Severity)
+        P2([Python: Fetch High]) :::pythonNode --> D3[support_high] :::datasetNode
+        D3 --> R2{{Prepare Recipe}} :::recipeNode
+        R2 --> D4[support_high_prepared] :::datasetNode
 
-    %% Global Background Layout (Styling for markdown viewports)
-    style P1 rx:15,ry:15
-    style P2 rx:15,ry:15
+        %% Merging Output
+        D2 --> S1{{Stack Recipe}} :::stackNode
+        D4 --> S1
+        S1 --> D5[support_incidents_combined] :::datasetNode
+    end
+
 ## Project Overview
 
 This project automates the ingestion and normalization of PagerDuty operational incident data to enable centralized SRE reporting. It separates incidents into discrete severity streams, normalizes the tracking metadata, and combines them into a unified reporting dataset.
