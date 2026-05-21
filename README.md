@@ -29,12 +29,19 @@ graph LR
         D4 --> S1
         S1 --> D5[support_incidents_combined]
 
-        %% Separate Style Assignments to avoid parser errors
-        class P1,P2 pythonNode;
-        class D1,D2,D3,D4,D5 datasetNode;
-        class R1,R2 recipeNode;
+        %% Clean styling declarations
+        class P1 pythonNode;
+        class P2 pythonNode;
+        class D1 datasetNode;
+        class D2 datasetNode;
+        class D3 datasetNode;
+        class D4 datasetNode;
+        class D5 datasetNode;
+        class R1 recipeNode;
+        class R2 recipeNode;
         class S1 stackNode;
     end
+```
 ## Project Overview
 
 This project automates the ingestion and normalization of PagerDuty operational incident data to enable centralized SRE reporting. It separates incidents into discrete severity streams, normalizes the tracking metadata, and combines them into a unified reporting dataset.
