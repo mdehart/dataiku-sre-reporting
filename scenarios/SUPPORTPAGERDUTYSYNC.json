@@ -1,7 +1,7 @@
 {
   "type": "step_based",
   "name": "support-pagerduty-sync",
-  "active": false,
+  "active": true,
   "checklists": {
     "checklists": []
   },
@@ -20,16 +20,15 @@
       "active": true,
       "params": {
         "repeatFrequency": 1,
-        "frequency": "Daily",
-        "startingFrom": "2026-03-09",
+        "frequency": "Weekly",
+        "startingFrom": "2026-05-21",
         "daysOfWeek": [
           "Monday"
         ],
-        "monthlyRunOn": "ON_THE_DAY",
         "minute": 0,
         "hour": 0,
         "timezone": "America/Denver",
-        "lastUpdate": 1773094225282
+        "lastUpdate": 1779359163092
       }
     }
   ],
@@ -40,8 +39,8 @@
         "type": "dataset-scenario",
         "configuration": {}
       },
-      "id": "LDjPneqY",
-      "name": "support-pagerduty-sync-failure",
+      "id": "yCd7q26p",
+      "name": "failed-runs",
       "runConditionEnabled": true,
       "runCondition": "outcome !\u003d \u0027SUCCESS\u0027",
       "phase": "END"
@@ -89,5 +88,6 @@
   },
   "automationLocal": false,
   "customFields": {},
-  "markedAsTest": false
+  "markedAsTest": false,
+  "__dku_object_version__": 1
 }
