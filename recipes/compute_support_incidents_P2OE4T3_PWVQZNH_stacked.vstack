@@ -1,6 +1,5 @@
 {
   "mode": "UNION",
-  "originColumnName": "original_dataset",
   "selectedColumns": [
     "incident_number",
     "status",
@@ -9,6 +8,7 @@
     "url",
     "incident_severity_level"
   ],
+  "originColumnName": "original_dataset",
   "engineParams": {
     "hive": {
       "skipPrerunValidate": false,
@@ -69,37 +69,6 @@
     }
   ],
   "postFilter": {
-    "$status": {
-      "schema": {
-        "columns": [
-          {
-            "name": "incident_number",
-            "type": "bigint"
-          },
-          {
-            "name": "status",
-            "type": "string"
-          },
-          {
-            "name": "created_at",
-            "type": "string"
-          },
-          {
-            "name": "title",
-            "type": "string"
-          },
-          {
-            "name": "url",
-            "type": "string"
-          },
-          {
-            "name": "incident_severity_level",
-            "type": "string"
-          }
-        ],
-        "userModified": false
-      }
-    },
     "distinct": false,
     "enabled": false
   },

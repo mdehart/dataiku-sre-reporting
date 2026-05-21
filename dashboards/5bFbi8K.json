@@ -146,6 +146,18 @@
     "isCustomized": false,
     "isBuiltIn": true
   },
+  "pageSectionSettings": {
+    "zoomMode": "FIT_TO_WIDTH",
+    "shouldDisplayPageSeparators": false,
+    "pageSectionFormat": {
+      "formatName": "A4",
+      "xInPx": 1754,
+      "yInPx": 1240,
+      "dpi": 150,
+      "orientation": "LANDSCAPE",
+      "ratio": 1.414516129032258
+    }
+  },
   "showGrid": false,
   "autoStackUp": false,
   "columnNumber": 36,
