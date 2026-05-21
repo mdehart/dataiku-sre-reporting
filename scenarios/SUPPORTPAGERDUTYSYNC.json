@@ -1,7 +1,8 @@
 {
   "type": "step_based",
   "name": "support-pagerduty-sync",
-  "active": true,
+  "active": false,
+  "runAsUser": "mikio.dehart@gmail.com",
   "checklists": {
     "checklists": []
   },
@@ -28,7 +29,7 @@
         "minute": 0,
         "hour": 0,
         "timezone": "America/Denver",
-        "lastUpdate": 1779359163092
+        "lastUpdate": 1779360241677
       }
     }
   ],
