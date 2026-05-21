@@ -3,7 +3,6 @@
 An automated data pipeline built in Dataiku DSS to extract, tag, and aggregate PagerDuty SRE (Site Reliability Engineering) incident events. This repository tracks the version-controlled recipes, python notebooks, scenarios, and metadata configurations for the project.
 
 ## Flow Overview
-
 ```mermaid
 graph LR
     %% Custom Dark Theme Palette
